@@ -8,6 +8,8 @@ class First extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('first page rebuild');
+    // Store.value<UserInfoModel>(context).getLocale();
+              print(Store.value<UserInfoModel>(context).locale);
     return Scaffold(
       appBar: AppBar(
         title: Text('first'),

@@ -22,7 +22,7 @@ class UserInfoModel extends UserInfo with ChangeNotifier {
   void getLocale() async {
     String locale = await CommonUtils.getCurrentLangType();
     _locale = Locale(locale);
-    notifyListeners();
+    // notifyListeners();
   }
   void updateLocale(locale) {
     print('updateLocale');
