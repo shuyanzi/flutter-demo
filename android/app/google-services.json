@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "249978409403",
+    "firebase_url": "https://myfirebase-a0f00.firebaseio.com",
+    "project_id": "myfirebase-a0f00",
+    "storage_bucket": "myfirebase-a0f00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249978409403:android:e1f78d238ba085ecc3749e",
+        "android_client_info": {
+          "package_name": "shuipaopao.fang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249978409403-oo31e4kvlbm8239me78vsmv2oorgoa4e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVG_BP82bT8azx6pt_vIsSJQRWhtHihDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249978409403-oo31e4kvlbm8239me78vsmv2oorgoa4e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
