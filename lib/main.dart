@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('root rebuild: $context');
-    print(CommonUtils.getLocale(context).appName);
+    // print(CommonUtils.getLocale(context).appName);
     // Store.value<UserInfoModel>(context).updateLocale('en');
     // print(Store.value<UserInfoModel>(context).locale);
     return MaterialApp(
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           locale: locale,
           supportedLocales: [locale],
           // home: LocalizationsWrap(child: MyHomePage(title: CommonUtils.getLocale(context).appName)),
-          home: MyHomePage(title: 'app name',),
+          home: MyHomePage(title: 'app'),
           // home: First(),
         );
   }
@@ -78,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    print(CommonUtils.getLocale(context).appName);
     // analytics.logEvent(name: 'incrementCounter', parameters: {'name': 'title'});
     setState(() {
       // This call to setState tells the Flutter framework that something has

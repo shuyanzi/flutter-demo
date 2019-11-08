@@ -30,9 +30,9 @@ class MyLocalizations {
   ///获取对应的 StringBase
   static MyLocalizations of(BuildContext context) {
     print('MyLocalizations BuildContext context');
-    // print(context);
-    // print(MyLocalizations);
-    // print(Localizations.of<MyLocalizations>(context, MyLocalizations));
+    print(context);
+    print(MyLocalizations);
+    print('1111:${Localizations.of<MyLocalizations>(context, MyLocalizations)}');
     return Localizations.of<MyLocalizations>(context, MyLocalizations);
   }
 }
