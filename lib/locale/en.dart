@@ -2,5 +2,5 @@ import 'string_base.dart';
 
 class StringEn extends StringBase {
   @override
-  String appName = "Atome Credit";
+  String appName = "my app name";
 }

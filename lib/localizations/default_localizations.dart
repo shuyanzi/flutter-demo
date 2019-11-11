@@ -20,8 +20,6 @@ class MyLocalizations {
   };
 
   StringBase get currentLocalized {
-    print('object');
-    print(locale.languageCode);
     return _localizedValues[locale.languageCode];
   }
 
@@ -29,10 +27,6 @@ class MyLocalizations {
   ///在应用中要使用 MyLocalizations， 的实例需要通过 MyLocalizations 这个 Widget 来获取的
   ///获取对应的 StringBase
   static MyLocalizations of(BuildContext context) {
-    print('MyLocalizations BuildContext context');
-    print(context);
-    print(MyLocalizations);
-    print('1111:${Localizations.of<MyLocalizations>(context, MyLocalizations)}');
     return Localizations.of<MyLocalizations>(context, MyLocalizations);
   }
 }

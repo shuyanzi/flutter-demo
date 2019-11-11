@@ -9,7 +9,7 @@ class CommonUtils {
   static getCurrentLangType() async {
     var lang = await LocalStorage.get(Configs.LOCALE);
     // return lang == Language.LANG_EN ? Language.LANG_EN : Language.LANG_ZH;
-    return lang == Language.LANG_EN ? Language.LANG_EN : Language.LANG_EN;
+    return lang == Language.LANG_EN ? Language.LANG_EN : Language.LANG_ZH;
   }
   static StringBase getLocale(BuildContext context) {
     return MyLocalizations.of(context).currentLocalized;

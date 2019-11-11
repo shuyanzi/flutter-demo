@@ -1,30 +1,50 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase/event/locale.dart';
 import 'package:flutter_firebase/localizations/cupertino_localisations_delegate.dart';
 import 'package:flutter_firebase/localizations/localizations_delegate.dart';
 import 'package:flutter_firebase/localizations/localizations_wrap.dart';
-// import 'package:flutter_firebase/pages/first.dart';
+import 'package:flutter_firebase/pages/first.dart';
 // import 'package:flutter_firebase/utils/analytics.dart' as Analytics;
 // import 'package:flutter_firebase/utils/analytics.dart' show analytics;
 import 'package:flutter_firebase/store/index.dart' show Store, UserInfoModel;
 import 'package:flutter_firebase/utils/common_utils.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_firebase/utils/event_bus.dart';
 
-void main() async {
-  String locale = await CommonUtils.getCurrentLangType();
-  runApp(MyApp(Locale(locale)));
+void main() {
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  final Locale locale;
-  MyApp(this.locale);
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale locale;
+  @override
+  void initState() {
+    super.initState();
+    _getLocale();
+    eventBus.on<LocaleEvent>().listen((event) {
+      setState(() {
+        this.locale = event.locale;
+      });
+    });
+  }
+
+  _getLocale() async {
+    locale = Locale(await CommonUtils.getCurrentLangType());
+  }
+
   @override
   Widget build(BuildContext context) {
     print('root rebuild: $context');
-    // print(CommonUtils.getLocale(context).appName);
-    // Store.value<UserInfoModel>(context).updateLocale('en');
-    // print(Store.value<UserInfoModel>(context).locale);
-    return MaterialApp(
+    return Store.init(
+        context: context,
+        child: MaterialApp(
           title: 'Flutter Demo',
           // navigatorObservers: <NavigatorObserver>[Analytics.observer],
           theme: ThemeData(
@@ -41,18 +61,20 @@ class MyApp extends StatelessWidget {
           ),
           localizationsDelegates: [
             // 提供地区数据和默认的文字布局
-            // const TranslationsDelegate(),  // 指向默认的处理翻译逻辑的库（后面会讲）
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             MyLocalizationsDelegate.delegate,
             FallbackCupertinoLocalisationsDelegate()
           ],
           locale: locale,
-          supportedLocales: [locale],
+          supportedLocales: [
+            const Locale('en', 'US'),
+            const Locale('zh', 'CH'),
+          ],
           // home: LocalizationsWrap(child: MyHomePage(title: CommonUtils.getLocale(context).appName)),
-          home: MyHomePage(title: 'app'),
-          // home: First(),
-        );
+          // home: MyHomePage(title: 'app'),
+          home: First(),
+        ));
   }
 }
 

@@ -12,7 +12,7 @@ class MyLocalizationsDelegate extends LocalizationsDelegate<MyLocalizations> {
 
   @override
   bool isSupported(Locale locale) {
-    ///支持越南和英语
+    ///支持中文和英语
     return [Language.LANG_EN, Language.LANG_ZH].contains(locale.languageCode);
   }
 

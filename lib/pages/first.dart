@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase/event/locale.dart';
 import 'package:flutter_firebase/store/index.dart'
     show Store, CounterModel, UserInfoModel;
 import 'package:flutter_firebase/pages/second.dart';
+import 'package:flutter_firebase/utils/common_utils.dart';
+import 'package:flutter_firebase/utils/event_bus.dart';
 
 class First extends StatelessWidget {
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     print('first page rebuild');
-    // Store.value<UserInfoModel>(context).getLocale();
-              print(Store.value<UserInfoModel>(context).locale);
     return Scaffold(
       appBar: AppBar(
         title: Text('first'),
@@ -17,13 +18,12 @@ class First extends StatelessWidget {
       body: Center(
         child: Column(
           children: <Widget>[
+            Text(CommonUtils.getLocale(context).appName),
             Store.connect<CounterModel>(builder: (context, snapshot, child) {
-              // Store.value<UserInfoModel>(context).getLocale();
-              print('Store.value<UserInfoModel>(context).locale');
-              print(Store.value<UserInfoModel>(context).locale);
               return RaisedButton(
-                child: Text('+'),
+                child: Text('zh'),
                 onPressed: () {
+                  eventBus.fire(LocaleEvent(Locale('zh')));
                   snapshot.increment();
                 },
               );
@@ -34,8 +34,9 @@ class First extends StatelessWidget {
             }),
             Store.connect<CounterModel>(builder: (context, snapshot, child) {
               return RaisedButton(
-                child: Text('-'),
+                child: Text('en'),
                 onPressed: () {
+                  eventBus.fire(LocaleEvent(Locale('en')));
                   snapshot.decrement();
                 },
               );
